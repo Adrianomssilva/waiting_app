@@ -1,0 +1,14 @@
+
+<%= form_with model: @row do |form| %>
+  <div>
+    <%= form.label :name, 'Nome da Sala' %> <br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :descrição %> <br>
+    <%= form.text_area :descrição %>
+  </div>
+  <div>
+    <%= form.submit "Criar Sala" %>
+  </div>
+  <% end %>

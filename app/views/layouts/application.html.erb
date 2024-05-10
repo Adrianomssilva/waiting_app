@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-2">
+    <main class="mx-5 mt-2 ">
       <nav>
         <%= render  "partials/nav" %>
       </nav>
@@ -19,8 +19,11 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       </div>
-      <%= yield %>
-      </main>
+      <div class="grid  place-items-center ">
+        <%= yield %>
+      </div>
+      
+    </main>
     
   </body>
 </html>

@@ -1,11 +1,11 @@
-<div>
+<div class="bg-yellow-800 flex gap-4 ">
   <div>
-    <h2>Waiting</h2>
+    <h2>  <%= link_to  "Todas as Salas", root_path %></h2>
   </div>
   <div>
-    <ul>
+    <ul class="flex justify-end gap-4 ">
     <% if user_signed_in?%>
-      <li><%= link_to  "Criar Fila", new_user_session_path %></li>
+      <li><%= link_to  "Criar Fila", new_row_path %></li>
       <li><%= link_to  "Sair", destroy_user_session_path, data: { turbo_method: :delete} %></li>
      <% else %>
       <li><%= link_to  "Login", new_user_session_path %></li>

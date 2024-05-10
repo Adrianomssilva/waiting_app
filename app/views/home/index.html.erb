@@ -1,1 +1,15 @@
-<h1> TEste </h1>
+<h1> Teste </h1>
+
+<ul>
+  <% if @rows.nil? %>
+    <p>Não existem salas criadas</p>
+  <% else %>
+    <% @rows.each do |sala| %>
+      <%= link_to row_path(sala)  do%>
+        <p>Dono da Sala: <%= sala.user.name %></p> <br>
+        <li>Nome da Sala: <%= sala.name %></li><br>
+        <li>Descrição: <%= sala.descrição %></li>
+      <% end %>
+    <% end %>
+<% end %>
+</ul>
