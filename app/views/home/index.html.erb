@@ -1,15 +1,18 @@
 <h1> Teste </h1>
-
-<ul>
-  <% if @rows.nil? %>
-    <p>Não existem salas criadas</p>
-  <% else %>
-    <% @rows.each do |sala| %>
-      <%= link_to row_path(sala)  do%>
-        <p>Dono da Sala: <%= sala.user.name %></p> <br>
-        <li>Nome da Sala: <%= sala.name %></li><br>
-        <li>Descrição: <%= sala.descrição %></li>
+<div class="flex justify-start w-full ">
+  <ul class="flex gap-5  ">
+    <% if @rows.nil? %>
+      <p>Não existem salas criadas</p>
+    <% else %>
+      <% @rows.each do |sala| %>
+        <%= link_to row_path(sala)  do%>
+        <div class="boder border-black border-4 p-2">
+          <p>Dono da Sala: <%= sala.user.name %></p> <br>
+          <li>Nome da Sala: <%= sala.name %></li><br>
+          <li>Descrição: <%= sala.descrição %></li>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-<% end %>
-</ul>
+  <% end %>
+  </ul>
+</div>
