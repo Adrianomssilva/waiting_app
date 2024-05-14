@@ -1,3 +1,14 @@
 <h1><%=@row.name%></h1><br>
 <p><%=@row.descrição%></p>
 
+<ul>
+  <%if @party_members.nil? %>
+    <p>Nenhum membro na sua PT</p>
+  <%else%>
+    <%@party_members.each do |member| %>
+      <li><%= member.user.name %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= button_to "entrar na sala",  row_party_members_path(@row.id) %>

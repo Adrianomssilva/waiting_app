@@ -21,6 +21,7 @@ class RowsController < ApplicationController
 
   def show
     @row = Row.find(params[:id])
+    @party_members = @row.party_members
   end
 
   private

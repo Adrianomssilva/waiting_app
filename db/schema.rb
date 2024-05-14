@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_09_224835) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_14_171737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "party_members", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "row_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["row_id"], name: "index_party_members_on_row_id"
+    t.index ["user_id"], name: "index_party_members_on_user_id"
+  end
 
   create_table "rows", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -36,5 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_224835) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "party_members", "rows"
+  add_foreign_key "party_members", "users"
   add_foreign_key "rows", "users"
 end
