@@ -12,7 +12,12 @@ class RowsController < ApplicationController
   def create
     @row = Row.new(row_params)
     @row.user = current_user
+    @party_member = PartyMember.new
     if @row.save!
+          @party_member.row = @row
+          @party_member.user = @row.user
+          @party_member.save!
+          @party_member.ativo!
       redirect_to @row
     else
       render :new
