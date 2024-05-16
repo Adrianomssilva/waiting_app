@@ -7,6 +7,17 @@ class PartyMembersController < ApplicationController
     @party_member.save!
   end
 
+  def ativo
+    @party_member = PartyMember.find(params[:id])
+    @party_member.ativo!
+  end
+
+
+  def destroy
+    @party_member = PartyMember.find(params[:id])
+    @party_member.destroy
+  end
+
 
   private
   def party_member_params

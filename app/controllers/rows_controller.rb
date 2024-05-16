@@ -24,6 +24,12 @@ class RowsController < ApplicationController
     @party_members = @row.party_members
   end
 
+  def destroy
+    @row = Row.find(params[:id])
+    @row.destroy
+    redirect_to root_path
+  end
+
   private
 
   def row_params

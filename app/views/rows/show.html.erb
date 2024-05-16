@@ -1,14 +1,51 @@
 <h1><%=@row.name%></h1><br>
 <p><%=@row.descrição%></p>
 
-<ul>
+
   <%if @party_members.nil? %>
     <p>Nenhum membro na sua PT</p>
   <%else%>
-    <%@party_members.each do |member| %>
-      <li><%= member.user.name %></li>
-    <% end %>
+  <div class="flex justify-center content-center gap-6">
+      <div class="border border-black border-2 p-4 h-96 w-40">
+        <h2> Ativos</h2>
+        <ul>
+          <% if @party_members.ativo.nil? %>
+              <p>Nenhum membro ativo</p>
+          <% else %>
+            <%@party_members.ativo.each do |member| %>
+              <li class="flex gap-4"><%= member.user.name %>
+              <% if current_user == @row.user  %>
+                <%= link_to "Excluir", party_member_path(member.id), data: {turbo_method: :delete} %>
+              <% elsif current_user == member.user %>
+                <%= link_to "Sair da fila", party_member_path(member.id), data: {turbo_method: :delete} %>
+              <% end %>
+              </li>
+            <% end %>
+          <% end %>
+          
+        </ul>
+      </div>
+      <div class="border border-black border-2 p-4 h-96 w-40">
+        <h2>Pendente</h2>
+        <ul>
+          <%@party_members.pendente.each do |member| %>
+            <li class="flex gap-4">
+              <%= member.user.name %>
+              <% if current_user == @row.user  %>
+                <%= link_to "Ativar", ativo_party_member_path(member.id), data: {turbo_method: :patch} %>
+              <% elsif current_user == member.user %>
+                <%= link_to "Sair da fila", party_member_path(member.id), data: {turbo_method: :delete} %>
+              <% end %>
+              
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   <% end %>
-</ul>
 
 <%= button_to "entrar na sala",  row_party_members_path(@row.id) %>
+
+<% if current_user == @row.user  %>
+  <%= link_to "Exluir sala", row_path(@row.id), data: {turbo_method: :delete} %>
+<% end %>
